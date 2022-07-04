@@ -2,13 +2,11 @@ package lexicon.se;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
-import java.text.ParseException;
 import java.time.LocalDate;
 
 class TodoItemTest {
-    TodoItem a = new TodoItem();
-    Person per = new Person();
+    Person lars = new Person("Lars", "Persson", "lars.persson@mail.com", "Lasse", "Highrock", AppRole.ROLE_APP_ADMIN);
+    TodoItem a = new TodoItem("Book", "A book", LocalDate.parse("2022-12-24"), true, lars, LocalDate.now());
     @Test
     void getId() {
         int getId = a.getId();
@@ -17,49 +15,44 @@ class TodoItemTest {
 
     @Test
     void getTitle() {
-        a.setTitle("Book");
         String getTitle = a.getTitle();
         Assertions.assertEquals("Book", getTitle);
     }
 
     @Test
     void getTaskDescription() {
-        a.setTaskDescription("A book");
         String getTaskDescription = a.getTaskDescription();
         Assertions.assertEquals("A book", getTaskDescription);
     }
 
     @Test
     void isDone() {
-        a.setDone(true);
         boolean isDone = a.isDone();
         Assertions.assertTrue(isDone);
     }
 
     @Test
     void getCreator() {
-        per.setFirstName("Per");
+        Person getCreator = lars;
+        Assertions.assertEquals("lars", getCreator);
 
     }
 
     @Test
     void isOverdue() {
-        LocalDate now = LocalDate.now();
-        LocalDate deadLine = LocalDate.parse("2022-12-24");
-        a.setDeadLine(deadLine);
         boolean isOverdue = a.isOverdue();
-        Assertions.assertTrue(true);
+        Assertions.assertTrue(isOverdue);
     }
-
     @Test
-    void getSummary() {
-        a.setCreator(per);
-        per.setFirstName("Per");
-        LocalDate deadLine = LocalDate.parse("2022-12-24");
-        a.setDeadLine(deadLine);
-        String n = "";
-        String getSummary = a.getSummary();
-        System.out.println(getSummary);
-        Assertions.assertEquals("", n);
+    void testToString() {
+        String toString = a.toString();
+        Assertions.assertEquals("TodoItem{" +
+                "id=" + 1 +
+                ", title='" + "Book" + '\'' +
+                ", taskDescription='" + "A book" + '\'' +
+                ", deadLine=" + "2022-12-24" +
+                ", done=" + "true" +
+                ", now=" + "2022-07-04" +
+                '}', toString);
     }
 }

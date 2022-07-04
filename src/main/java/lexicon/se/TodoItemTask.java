@@ -1,29 +1,66 @@
 package lexicon.se;
-
-import java.text.ParseException;
-import java.time.LocalDate;
+import java.util.Objects;
 
 public class TodoItemTask {
-    public static void main(String[] args) throws ParseException {
-        Person anders = new Person();
-        anders.setFirstName("Anders");
-        anders.setLastName("Beritsson");
-        anders.setEmail("anders.beritsson@gmail.com");
-        anders.getSummary();
+    private int id;
+    private boolean assigned;
+    private String toDoItem;
+    private Person assigne;
+    private static int uid=0;
 
-        Person lars = new Person();
-        lars.setFirstName("Lars");
-        lars.setLastName("Parad");
-        lars.setEmail("lars.parad@gmail.com");
-        lars.getSummary();
+    public TodoItemTask(boolean assigned, String toDoItem, Person assigne) {
+        this.assigned = assigned;
+        this.toDoItem = toDoItem;
+        this.assigne = assigne;
+        this.id = uid++;
+    }
 
-        TodoItem carCleaning = new TodoItem();
-        carCleaning.setTitle("Car Cleaning");
-        carCleaning.setCreator(lars);
-        carCleaning.setDone(false);
-        carCleaning.setTaskDescription("Cleaning cars, nothing more.");
-        carCleaning.setDeadLine(LocalDate.parse("2022-12-22"));
-        carCleaning.getSummary();
+    public int getId() {
+        return id;
+    }
 
+    public boolean isAssigned() {
+        return assigned;
+    }
+
+    public void setAssigned(boolean assigned) {
+        this.assigned = assigned;
+    }
+
+    public String getToDoItem() {
+        return toDoItem;
+    }
+
+    public void setToDoItem(String toDoItem) {
+        this.toDoItem = toDoItem;
+    }
+
+    public Person getAssigne() {
+        return assigne;
+    }
+
+    public void setAssigne(Person assigne) {
+        this.assigne = assigne;
+    }
+    @Override
+    public String toString() {
+        return "TodoItemTask{" +
+                "id=" + id +
+                ", assigned=" + assigned +
+                ", toDoItem='" + toDoItem + '\'' +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        TodoItemTask that = (TodoItemTask) o;
+        return id == that.id && assigned == that.assigned && Objects.equals(toDoItem, that.toDoItem);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, assigned, toDoItem);
     }
 }
