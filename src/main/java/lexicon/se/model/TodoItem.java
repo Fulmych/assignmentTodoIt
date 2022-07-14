@@ -1,4 +1,6 @@
-package lexicon.se;
+package lexicon.se.model;
+import lexicon.se.sequencers.TodoItemIdSequencer;
+
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -18,43 +20,44 @@ public class TodoItem {
         this.done = done;
         this.creator = creator;
         this.now = now;
+        this.id = TodoItemIdSequencer.nextId();
     }
 
-    int getId(){
+    public int getId(){
         return this.id;
     }
-    String getTitle(){
+    public String getTitle(){
         return title;
     }
-    void setTitle(String title){
+    public void setTitle(String title){
         this.title = title;
         id++;
     }
-    String getTaskDescription(){
+    public String getTaskDescription(){
         return taskDescription;
     }
-    void setTaskDescription(String taskDescription){
+    public void setTaskDescription(String taskDescription){
         this.taskDescription = taskDescription;
     }
-    LocalDate getDeadLine(){
+    public LocalDate getDeadLine(){
         return deadLine;
     }
-    void setDeadLine(LocalDate deadLine){
+    public void setDeadLine(LocalDate deadLine){
         this.deadLine = deadLine;
     }
-    void setDone(boolean done){
+    public void setDone(boolean done){
         this.done = done;
     }
-    boolean isDone(){
+    public boolean isDone(){
         return done;
     }
-    Person getCreator(){
+    public Person getCreator(){
         return creator;
     }
-    void setCreator(Person creator){
+    public void setCreator(Person creator){
         this.creator = creator;
     }
-    boolean isOverdue() {
+    public boolean isOverdue() {
         return !deadLine.isBefore(now);
     }
     @Override

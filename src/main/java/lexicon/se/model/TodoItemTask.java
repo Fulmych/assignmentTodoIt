@@ -1,18 +1,19 @@
-package lexicon.se;
+package lexicon.se.model;
+import lexicon.se.sequencers.TodoItemTaskIdSequencer;
+
 import java.util.Objects;
 
 public class TodoItemTask {
     private int id;
     private boolean assigned;
-    private String toDoItem;
+    private TodoItem toDoItem;
     private Person assigne;
-    private static int uid=0;
 
-    public TodoItemTask(boolean assigned, String toDoItem, Person assigne) {
+    public TodoItemTask(boolean assigned, TodoItem toDoItem, Person assigne) {
         this.assigned = assigned;
         this.toDoItem = toDoItem;
         this.assigne = assigne;
-        this.id = uid++;
+        this.id = TodoItemTaskIdSequencer.nextId();
     }
 
     public int getId() {
@@ -27,11 +28,11 @@ public class TodoItemTask {
         this.assigned = assigned;
     }
 
-    public String getToDoItem() {
+    public TodoItem getToDoItem() {
         return toDoItem;
     }
 
-    public void setToDoItem(String toDoItem) {
+    public void setToDoItem(TodoItem toDoItem) {
         this.toDoItem = toDoItem;
     }
 
@@ -44,11 +45,11 @@ public class TodoItemTask {
     }
     @Override
     public String toString() {
-        return "TodoItemTask{" +
+        return "TodoItemTask[" +
                 "id=" + id +
                 ", assigned=" + assigned +
                 ", toDoItem='" + toDoItem + '\'' +
-                '}';
+                ']';
     }
 
     @Override

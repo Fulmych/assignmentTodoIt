@@ -1,8 +1,12 @@
 package lexicon.se;
+import lexicon.se.model.AppRole;
+import lexicon.se.model.AppUser;
+import lexicon.se.model.Person;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 class PersonTest {
+    AppUser b = new AppUser();
     Person a = new Person("Lars", "Persson", "lars.persson@mail.com", "Lasse", "Highrock", AppRole.ROLE_APP_ADMIN);
 
     @Test

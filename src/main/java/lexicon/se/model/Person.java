@@ -1,44 +1,48 @@
-package lexicon.se;
+package lexicon.se.model;
 
+import lexicon.se.sequencers.PersonIdSequencer;
+
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Person {
-    private static int uid = 0;
+public class Person implements Serializable {
     private int id;
     private String firstName;
     private String lastName;
     private String email;
     private AppUser credentials;
-
+//
     public Person(String firstName, String lastName, String email, String username, String password, AppRole role) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        credentials.setUsername(username);
-        credentials.setPassword(password);
-        credentials.setRole(role);
-        this.id = uid++;
+        AppUser user = new AppUser();
+//        this.setCredentials(appUser);
+        user.setUsername(username);
+        user.setPassword(password);
+        user.setRole(role);
+        id=PersonIdSequencer.nextId();
     }
 
-    int getId(){
+    public int getId(){
         return id;
     }
-    void setFirstName(String firstName){
+    public void setFirstName(String firstName){
         this.firstName = firstName;
     }
-    String getFirstName(){
+    public String getFirstName(){
         return firstName;
     }
-    void setLastName(String lastName){
+    public void setLastName(String lastName){
         this.lastName = lastName;
     }
-    String getLastName(){
+    public String getLastName(){
         return lastName;
     }
-    void setEmail(String email){
+    public void setEmail(String email){
         this.email = email;
     }
-    String getEmail(){
+    public String getEmail(){
         return email;
     }
 
@@ -46,6 +50,8 @@ public class Person {
         return credentials;
     }
 
+//    public void setCredentials(AppUser appUser){
+//        this.credentials = appUser;
     public void setCredentials(String username, String password, AppRole role) {
         credentials.setUsername(username);
         credentials.setPassword(password);

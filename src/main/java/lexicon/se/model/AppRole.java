@@ -1,4 +1,4 @@
-package lexicon.se;
+package lexicon.se.model;
 
 public enum AppRole {
     ROLE_APP_USER("User"), ROLE_APP_ADMIN("Admin");
