@@ -3,6 +3,7 @@ package lexicon.se.sequencers;
 import lexicon.se.model.Person;
 
 public class PersonIdSequencer {
+
     private static int currentId;
     public static int nextId() {
         return PersonIdSequencer.currentId+=1;

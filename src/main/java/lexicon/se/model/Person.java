@@ -6,7 +6,7 @@ import java.io.Serializable;
 import java.util.Objects;
 
 public class Person implements Serializable {
-    private int id;
+    private final int id;
     private String firstName;
     private String lastName;
     private String email;

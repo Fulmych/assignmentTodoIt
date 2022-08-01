@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class TodoItemTaskDAOList implements TodoItemTaskDAO{
-    private List<TodoItemTask> todoItemTasks = new ArrayList<>();
+    private final List<TodoItemTask> todoItemTasks = new ArrayList<>();
 
     @Override
     public TodoItemTask persist(TodoItemTask todoItemTask) {

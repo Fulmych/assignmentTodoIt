@@ -4,7 +4,7 @@ import lexicon.se.sequencers.TodoItemTaskIdSequencer;
 import java.util.Objects;
 
 public class TodoItemTask {
-    private int id;
+    private final int id;
     private boolean assigned;
     private TodoItem toDoItem;
     private Person assigne;

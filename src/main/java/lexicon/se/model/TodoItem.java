@@ -11,7 +11,7 @@ public class TodoItem {
     private LocalDate deadLine;
     private boolean done;
     private Person creator;
-    private LocalDate now;
+    private final LocalDate now;
 
     public TodoItem(String title, String taskDescription, LocalDate deadLine, boolean done, Person creator, LocalDate now) {
         this.title = title;

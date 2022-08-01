@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class TodoItemDAOList implements TodoItemDAO{
-    private List<TodoItem> todoItems = new ArrayList<>();
+    private final List<TodoItem> todoItems = new ArrayList<>();
 
     @Override
     public TodoItem persist(TodoItem todoItem) {
