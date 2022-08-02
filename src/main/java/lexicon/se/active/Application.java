@@ -23,5 +23,7 @@ public class Application {
         System.out.println("All members = " + pL.findAll());
         System.out.println("Car = " + iL.findAll());
         System.out.println("Car washing = " + tL.findAll());
+        files.writeObjectToFile(pL.findAll());
+        System.out.println(files.readFileToJsonString());
     }
 }
