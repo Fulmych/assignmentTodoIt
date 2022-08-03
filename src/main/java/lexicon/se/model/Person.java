@@ -2,6 +2,7 @@ package lexicon.se.model;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lexicon.se.active.FileCreation;
 import lexicon.se.sequencers.PersonIdSequencer;
 
 import java.io.File;
@@ -9,21 +10,16 @@ import java.util.Objects;
 
 public class Person {
     private final int id;
-
     private String firstName;
-
     private String lastName;
-
     private String email;
     private AppUser credentials;
-    public static File file;
 
     @JsonCreator
     public Person( @JsonProperty("firstName")String firstName, @JsonProperty("lastName")String lastName, @JsonProperty("email")String email, @JsonProperty("username") String username, @JsonProperty("password") String password, @JsonProperty("role") AppRole role) {
-        file = new File("object_"+firstName+".json");
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
+        setFirstName(firstName);
+        setLastName(lastName);
+        setEmail(email);
         AppUser user = new AppUser();
         setCredentials(user);
         setUsername(username);
@@ -31,7 +27,6 @@ public class Person {
         setRole(role);
         id=PersonIdSequencer.nextId();
     }
-
     public int getId(){
         return id;
     }
@@ -53,7 +48,6 @@ public class Person {
     public String getEmail(){
         return email;
     }
-
     public AppUser getCredentials() {
         return credentials;
     }
@@ -61,9 +55,7 @@ public class Person {
         credentials = credential;
     }
     public void setUsername(String username){ credentials.setUsername(username);}
-
     public void setPassword(String password){ credentials.setPassword(password);}
-
     public void setRole(AppRole role){ credentials.setRole(role);}
     public boolean equals(Object o) {
         if (this == o) return true;

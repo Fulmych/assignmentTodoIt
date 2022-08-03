@@ -13,10 +13,18 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class FileCreation {
+    static File file;
     static ObjectMapper mapper = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT);
     public static String transformObjToJsonString(Object obj){
         String json;
         try {
+            if (obj instanceof Person){
+                file = new File("object_"+((Person) obj).getFirstName()+".json");
+            } else if (obj instanceof TodoItem){
+                file = new File("object_"+((TodoItem) obj).getTitle()+".json");
+            } else {
+                file = new File("object_task_"+((TodoItemTask) obj).getToDoItem().getTitle()+".json");
+            }
             json = mapper.writeValueAsString(obj);
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
@@ -39,8 +47,9 @@ public class FileCreation {
     }
     public static void writeTodoItemToFile(TodoItem todoItem){
         FileWriter writer;
+        String title = todoItem.getTitle().replace(" ", "");
         try {
-            writer = new FileWriter("object_"+todoItem.getTitle()+".json");
+            writer = new FileWriter("object_"+title+".json");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -53,8 +62,9 @@ public class FileCreation {
     }
     public static void writeTodoItemTaskToFile(TodoItemTask todoItemTask){
         FileWriter writer;
+        String title = todoItemTask.getToDoItem().getTitle().replace(" ", "");
         try {
-            writer = new FileWriter("object_task_"+todoItemTask.getToDoItem()+".json");
+            writer = new FileWriter("object_task_"+title+".json");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

@@ -1,4 +1,6 @@
 package lexicon.se.model;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lexicon.se.sequencers.TodoItemIdSequencer;
 
 import java.io.File;
@@ -14,7 +16,8 @@ public class TodoItem {
     private Person creator;
     private final LocalDate now;
 
-    public TodoItem(String title, String taskDescription, LocalDate deadLine, boolean done, Person creator, LocalDate now) {
+    @JsonCreator
+    public TodoItem(@JsonProperty("title")String title, @JsonProperty("taskDescription")String taskDescription, @JsonProperty("deadLine")LocalDate deadLine, @JsonProperty("done")boolean done, @JsonProperty("creator")Person creator, @JsonProperty("now")LocalDate now) {
         File fileTodoItem = new File("object_"+title+".json");
         this.title = title;
         this.taskDescription = taskDescription;
