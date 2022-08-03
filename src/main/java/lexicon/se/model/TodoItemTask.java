@@ -1,6 +1,7 @@
 package lexicon.se.model;
 import lexicon.se.sequencers.TodoItemTaskIdSequencer;
 
+import java.io.File;
 import java.util.Objects;
 
 public class TodoItemTask {
@@ -10,6 +11,7 @@ public class TodoItemTask {
     private Person assigne;
 
     public TodoItemTask(boolean assigned, TodoItem toDoItem, Person assigne) {
+        File fileTodoItemTask = new File("object_task_"+toDoItem.getTitle()+".json");
         this.assigned = assigned;
         this.toDoItem = toDoItem;
         this.assigne = assigne;

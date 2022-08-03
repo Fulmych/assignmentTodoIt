@@ -4,6 +4,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import lexicon.se.model.Person;
+import lexicon.se.model.TodoItem;
+import lexicon.se.model.TodoItemTask;
 
 import java.io.*;
 import java.nio.file.Files;
@@ -21,7 +23,7 @@ public class FileCreation {
         }
         return json;
     }
-    public static void writeObjectToFile(Person person){
+    public static void writePersonToFile(Person person){
         FileWriter writer;
         try {
             writer = new FileWriter("object_"+person.getFirstName()+".json");
@@ -35,7 +37,35 @@ public class FileCreation {
             throw new RuntimeException(e);
         }
     }
-    public static String readFileToJsonString(String name){
+    public static void writeTodoItemToFile(TodoItem todoItem){
+        FileWriter writer;
+        try {
+            writer = new FileWriter("object_"+todoItem.getTitle()+".json");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        try {
+            writer.write(transformObjToJsonString(todoItem));
+            writer.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public static void writeTodoItemTaskToFile(TodoItemTask todoItemTask){
+        FileWriter writer;
+        try {
+            writer = new FileWriter("object_task_"+todoItemTask.getToDoItem()+".json");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        try {
+            writer.write(transformObjToJsonString(todoItemTask));
+            writer.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public static String readFileToPersonJsonString(String name){
         Path jsonPath = Paths
                 .get("object_"+name+".json")
                 .toAbsolutePath();
@@ -46,9 +76,45 @@ public class FileCreation {
             throw new RuntimeException(e);
         }
     }
-    static public Person fromJson(String json){
+    public static String readFileToTodoItemJsonString(String title){
+        Path jsonPath = Paths
+                .get("object_"+title+".json")
+                .toAbsolutePath();
+        try {
+            return Files.lines(jsonPath)
+                    .reduce("", String::concat);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public static String readFileToTodoItemTaskJsonString(String taskName){
+        Path jsonPath = Paths
+                .get("object_task_"+taskName+".json")
+                .toAbsolutePath();
+        try {
+            return Files.lines(jsonPath)
+                    .reduce("", String::concat);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    static public Person fromJsonPerson(String json){
         try {
             return mapper.readValue(json, Person.class);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    static public TodoItem fromJsonTodoItem(String json){
+        try {
+            return mapper.readValue(json, TodoItem.class);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    static public TodoItemTask fromJsonTodoItemTask(String json){
+        try {
+            return mapper.readValue(json, TodoItemTask.class);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

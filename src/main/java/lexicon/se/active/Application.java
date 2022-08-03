@@ -13,8 +13,8 @@ public class Application {
         Person lars;
         Person anders;
         if (Person.file.exists()){
-            lars = FileCreation.fromJson(FileCreation.readFileToJsonString("lars"));
-            anders = FileCreation.fromJson(FileCreation.readFileToJsonString("anders"));
+            lars = FileCreation.fromJsonPerson(FileCreation.readFileToPersonJsonString("lars"));
+            anders = FileCreation.fromJsonPerson(FileCreation.readFileToPersonJsonString("anders"));
         } else {
             pL = new PersonDAOList();
             lars = new Person("Lars", "Berg", "lars.berg@mail.com", "Lasse", "Högrev", AppRole.ROLE_APP_ADMIN);
@@ -31,9 +31,9 @@ public class Application {
         System.out.println("All members = " + pL.findAll());
         System.out.println("Car = " + iL.findAll());
         System.out.println("Car washing = " + tL.findAll());
-        FileCreation.writeObjectToFile(lars);
-        FileCreation.writeObjectToFile(anders);
-        System.out.println(FileCreation.readFileToJsonString("lars"));
-        System.out.println(FileCreation.readFileToJsonString("Anders"));
+        FileCreation.writePersonToFile(lars);
+        FileCreation.writePersonToFile(anders);
+        System.out.println(FileCreation.readFileToPersonJsonString("lars"));
+        System.out.println(FileCreation.readFileToPersonJsonString("Anders"));
     }
 }

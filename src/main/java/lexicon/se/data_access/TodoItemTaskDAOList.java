@@ -1,4 +1,5 @@
 package lexicon.se.data_access;
+import lexicon.se.model.TodoItem;
 import lexicon.se.model.TodoItemTask;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +16,11 @@ public class TodoItemTaskDAOList implements TodoItemTaskDAO{
 
     @Override
     public TodoItemTask findById(int id) {
-        return (TodoItemTask) todoItemTasks.stream().filter(todoItemTask -> todoItemTask.getId()==id);
+        return todoItemTasks.stream()
+                .filter(todoItemTask -> todoItemTask.getId()==id)
+                .map(TodoItemTask.class::cast)
+                .findAny()
+                .orElse(null);
     }
 
     @Override

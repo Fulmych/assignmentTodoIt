@@ -1,4 +1,4 @@
-package lexicon.se;
+package lexicon.se.model;
 import lexicon.se.model.AppRole;
 import lexicon.se.model.AppUser;
 import lexicon.se.model.Person;

@@ -1,6 +1,7 @@
 package lexicon.se.data_access;
 
 import lexicon.se.model.AppUser;
+import lexicon.se.model.TodoItemTask;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +17,11 @@ public class AppUserDAOList implements AppUserDAO{
 
     @Override
     public AppUser findByUsername(String username) {
-        return (AppUser) appUsers.stream().filter(appUser -> appUser.getUsername().equalsIgnoreCase(username));
+        return appUsers.stream()
+                .filter(appUser -> appUser.getUsername().equalsIgnoreCase(username))
+                .map(AppUser.class::cast)
+                .findAny()
+                .orElse(null);
     }
 
     @Override

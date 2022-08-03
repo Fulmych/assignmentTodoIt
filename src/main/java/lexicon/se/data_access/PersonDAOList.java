@@ -25,7 +25,11 @@ public class PersonDAOList implements PersonDAO{
 
     @Override
     public Person findByEmail(String email) {
-        return (Person) people.stream().filter(person -> person.getEmail().equalsIgnoreCase(email));
+        return people.stream()
+                .filter(person -> person.getEmail().equals(email))
+                .map(Person.class::cast)
+                .findAny()
+                .orElse(null);
     }
 
     @Override

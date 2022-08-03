@@ -1,6 +1,7 @@
 package lexicon.se.model;
 import lexicon.se.sequencers.TodoItemIdSequencer;
 
+import java.io.File;
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -14,6 +15,7 @@ public class TodoItem {
     private final LocalDate now;
 
     public TodoItem(String title, String taskDescription, LocalDate deadLine, boolean done, Person creator, LocalDate now) {
+        File fileTodoItem = new File("object_"+title+".json");
         this.title = title;
         this.taskDescription = taskDescription;
         this.deadLine = deadLine;

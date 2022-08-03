@@ -1,4 +1,5 @@
 package lexicon.se.data_access;
+import lexicon.se.model.Person;
 import lexicon.se.model.TodoItem;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -16,7 +17,11 @@ public class TodoItemDAOList implements TodoItemDAO{
 
     @Override
     public TodoItem findById(int id) {
-        return (TodoItem) todoItems.stream().filter(todoItem -> todoItem.getId()==id);
+        return todoItems.stream()
+                .filter(todoItem -> todoItem.getId() == id)
+                .map(TodoItem.class::cast)
+                .findAny()
+                .orElse(null);
     }
 
     @Override

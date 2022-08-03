@@ -1,4 +1,4 @@
-package lexicon.se;
+package lexicon.se.model;
 
 import lexicon.se.model.*;
 import org.junit.jupiter.api.Assertions;
