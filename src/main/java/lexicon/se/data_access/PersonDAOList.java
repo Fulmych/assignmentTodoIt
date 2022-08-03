@@ -16,7 +16,11 @@ public class PersonDAOList implements PersonDAO{
 
     @Override
     public Person findById(int id) {
-        return (Person) people.stream().filter(person -> person.getId() == id);
+        return people.stream()
+                .filter(person -> person.getId() == id)
+                .map(Person.class::cast)
+                .findAny()
+                .orElse(null);
     }
 
     @Override

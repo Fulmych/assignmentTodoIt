@@ -24,7 +24,7 @@ public class TodoItem {
     }
 
     public int getId(){
-        return this.id;
+        return id;
     }
     public String getTitle(){
         return title;

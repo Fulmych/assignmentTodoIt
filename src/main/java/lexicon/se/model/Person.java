@@ -1,26 +1,34 @@
 package lexicon.se.model;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lexicon.se.sequencers.PersonIdSequencer;
 
-import java.io.Serializable;
+import java.io.File;
 import java.util.Objects;
 
-public class Person implements Serializable {
+public class Person {
     private final int id;
+
     private String firstName;
+
     private String lastName;
+
     private String email;
     private AppUser credentials;
-//
-    public Person(String firstName, String lastName, String email, String username, String password, AppRole role) {
+    public static File file;
+
+    @JsonCreator
+    public Person( @JsonProperty("firstName")String firstName, @JsonProperty("lastName")String lastName, @JsonProperty("email")String email, @JsonProperty("username") String username, @JsonProperty("password") String password, @JsonProperty("role") AppRole role) {
+        file = new File("object_"+firstName+".json");
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         AppUser user = new AppUser();
-//        this.setCredentials(appUser);
-        user.setUsername(username);
-        user.setPassword(password);
-        user.setRole(role);
+        setCredentials(user);
+        setUsername(username);
+        setPassword(password);
+        setRole(role);
         id=PersonIdSequencer.nextId();
     }
 
@@ -49,14 +57,14 @@ public class Person implements Serializable {
     public AppUser getCredentials() {
         return credentials;
     }
-
-//    public void setCredentials(AppUser appUser){
-//        this.credentials = appUser;
-    public void setCredentials(String username, String password, AppRole role) {
-        credentials.setUsername(username);
-        credentials.setPassword(password);
-        credentials.setRole(role);
+    public void setCredentials(AppUser credential) {
+        credentials = credential;
     }
+    public void setUsername(String username){ credentials.setUsername(username);}
+
+    public void setPassword(String password){ credentials.setPassword(password);}
+
+    public void setRole(AppRole role){ credentials.setRole(role);}
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;

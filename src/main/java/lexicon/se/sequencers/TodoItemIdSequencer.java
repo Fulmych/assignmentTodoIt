@@ -6,11 +6,11 @@ public class TodoItemIdSequencer {
         return TodoItemIdSequencer.currentId+=1;
     }
 
-    public int getCurrentId() {
+    public static int getCurrentId() {
         return TodoItemIdSequencer.currentId;
     }
 
-    public void setCurrentId(int currentId) {
+    public static void setCurrentId(int currentId) {
         TodoItemIdSequencer.currentId = currentId;
     }
 }

@@ -36,7 +36,7 @@ class PersonTest {
     }
     @Test
     void getCredentials() {
-        a.setCredentials("PerBoy", "CatsHasForLegs", AppRole.ROLE_APP_USER);
+        a.setCredentials(b);
         Assertions.assertEquals("AppUser{" +
                 "username='" + "PerBoy" + '\'' +
                 ", role=" + "User" +
